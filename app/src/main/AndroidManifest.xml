@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".ui.FilamentDroidApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilamentDroid"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.first.FirstPageActivity"
             android:exported="true"
             android:theme="@style/Theme.FilamentDroid">
             <intent-filter>
@@ -23,5 +27,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
