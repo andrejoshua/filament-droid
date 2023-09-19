@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".ui.FilamentDroidApplication"
+        android:name=".ui.MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,9 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilamentDroid"
         tools:targetApi="31">
-
         <activity
-            android:name=".ui.first.FirstPageActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.FilamentDroid">
             <intent-filter>
@@ -26,9 +25,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.second.SecondPageActivity"
-            android:exported="false"
-            android:theme="@style/Theme.FilamentDroid" />
     </application>
 </manifest>

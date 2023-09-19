@@ -33,27 +33,35 @@ val Typography = Typography(
         fontWeight = FontWeight.W700,
         fontSize = 36.sp,
         lineHeight = 58.sp,
-        color = Text
+        color = DefaultText
     ),
     titleMedium = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight.W700,
         fontSize = 20.sp,
         lineHeight = 24.sp,
-        color = Text
+        color = DefaultText
     ),
     labelMedium = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight.W700,
         fontSize = 16.sp,
         lineHeight = 20.sp,
-        color = Text
+        color = DefaultText
     ),
     bodySmall = TextStyle(
         fontFamily = fontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 18.sp,
-        color = Text
-    ),
+        color = DefaultText
+    )
+)
+
+val buttonStyle = TextStyle(
+    fontFamily = fontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
+    lineHeight = 28.sp,
+    color = DefaultText
 )

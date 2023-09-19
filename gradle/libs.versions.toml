@@ -14,6 +14,8 @@ hilt-navigation-compose = "1.0.0"
 retrofit = "2.9.0"
 okhttp3 = "4.11.0"
 glide-compose = "1.0.0-alpha.5"
+filament = "1.42.1"
+nav = "2.7.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -43,6 +45,8 @@ retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref =
 retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide-compose" }
+filament-android = { group = "com.google.android.filament", name = "filament-android", version.ref = "filament" }
+nav-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

@@ -26,8 +26,21 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            isDebuggable = true
             isMinifyEnabled = false
+            isShrinkResources = false
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        release {
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,6 +57,7 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -93,15 +107,21 @@ dependencies {
     implementation(libs.runtime.livedata)
     implementation(libs.material3)
     implementation(libs.coroutines.android)
-    implementation(libs.hilt.android)
     implementation(platform(libs.compose.bom))
     androidTestImplementation(platform(libs.compose.bom))
     implementation(libs.glide.compose)
+    implementation(libs.nav.compose)
+
+    implementation(libs.hilt.android)
+    androidTestImplementation(platform(libs.compose.bom))
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
+
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.okhttp3.logging.interceptor)
+
+    implementation(libs.filament.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
