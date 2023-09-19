@@ -122,6 +122,8 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
 
     implementation(libs.filament.android)
+    implementation(libs.filament.android.utils)
+    implementation(libs.filament.android.gltfio)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
