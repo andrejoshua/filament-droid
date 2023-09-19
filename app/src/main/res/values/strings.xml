@@ -1,3 +1,28 @@
 <resources>
+
     <string name="app_name">FilamentDroid</string>
+
+    <!-- Models screen -->
+    <string name="button_ok">OK</string>
+
+    <!-- Profile section -->
+    <string name="profile_title">My profile</string>
+    <string name="profile_personal_info">Personal information</string>
+    <string name="profile_username">Username</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_phone_number">Phone number</string>
+    <string name="profile_date_of_birth">Date of birth</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_country">Country</string>
+    <string name="profile_city">City</string>
+    <string name="profile_street_name">Street name</string>
+    <string name="profile_street_address">Street address</string>
+    <string name="profile_zip_code">Zip code</string>
+    <string name="profile_subscription">Subscription</string>
+    <string name="profile_plan">Plan</string>
+    <string name="profile_status">Status</string>
+    <string name="profile_payment_method">Payment method</string>
+    <string name="profile_term">Term</string>
+
+    <string name="content_desc_avatar">User Avatar URL</string>
 </resources>

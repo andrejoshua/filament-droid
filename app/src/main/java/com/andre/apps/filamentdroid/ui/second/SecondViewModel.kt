@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SecondPageViewModel @Inject constructor(private val getUserUseCase: GetUserUseCase) :
+class SecondViewModel @Inject constructor(private val getUserUseCase: GetUserUseCase) :
     ViewModel() {
 
     fun getUser(): LiveData<User> = _user

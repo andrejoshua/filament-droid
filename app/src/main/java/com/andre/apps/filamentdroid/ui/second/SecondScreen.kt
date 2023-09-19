@@ -1,8 +1,5 @@
 package com.andre.apps.filamentdroid.ui.second
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -31,45 +28,32 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.andre.apps.filamentdroid.R
 import com.andre.apps.filamentdroid.design.BackgroundInfo
 import com.andre.apps.filamentdroid.design.BackgroundSecondary
-import com.andre.apps.filamentdroid.design.FilamentDroidTheme
 import com.andre.apps.filamentdroid.domain.User
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class SecondPageActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Screen()
-        }
-    }
-}
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Screen() {
-    FilamentDroidTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = BackgroundSecondary
-        ) {
-            val pagerState = rememberPagerState(pageCount = {
-                2
-            })
-            HorizontalPager(state = pagerState) { page ->
-                when (page) {
-                    0 -> ModelView()
-                    1 -> ProfileView()
-                }
+fun SecondScreen() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        val pagerState = rememberPagerState(pageCount = {
+            2
+        })
+        HorizontalPager(state = pagerState) { page ->
+            when (page) {
+                0 -> ModelView()
+                1 -> ProfileView()
             }
         }
     }
@@ -88,7 +72,7 @@ fun ModelView() {
 
 @Composable
 fun ProfileView() {
-    val vm: SecondPageViewModel = hiltViewModel()
+    val vm: SecondViewModel = hiltViewModel()
     val user by vm.getUser().observeAsState(null)
 
     ProfileSubview(user = user)
@@ -103,61 +87,66 @@ fun ProfileSubview(user: User?) {
         state = state,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 14.dp),
+            .background(BackgroundSecondary)
+            .padding(
+                horizontal = dimensionResource(R.dimen.margin_default)
+            ),
         contentPadding = PaddingValues(
-            top = 14.dp,
-            bottom = 14.dp
+            top = dimensionResource(R.dimen.margin_default),
+            bottom = dimensionResource(R.dimen.margin_default)
         )
     ) {
         item {
             Text(
-                text = "My profile",
+                text = stringResource(R.string.profile_title),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.headlineMedium
             )
-            Spacer(modifier = Modifier.size(14.dp))
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.margin_default)))
             Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center
             ) {
                 GlideImage(
                     model = user?.avatarUrl,
-                    contentDescription = "User avatar URL",
+                    contentDescription = stringResource(R.string.content_desc_avatar),
                     modifier = Modifier
                         .size(96.dp)
                         .clip(CircleShape),
                 )
             }
-            Spacer(modifier = Modifier.size(36.dp))
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.margin_large)))
             AddInformationSection(
-                title = "Personal information",
+                title = stringResource(R.string.profile_personal_info),
                 information = mapOf(
-                    "Username" to (user?.username ?: ""),
-                    "Email" to (user?.email ?: ""),
-                    "Phone number" to (user?.phoneNumber ?: ""),
-                    "Date of birth" to (user?.birthDateAsString ?: "")
+                    stringResource(R.string.profile_username) to (user?.username ?: ""),
+                    stringResource(R.string.profile_email) to (user?.email ?: ""),
+                    stringResource(R.string.profile_phone_number) to (user?.phoneNumber ?: ""),
+                    stringResource(R.string.profile_date_of_birth) to (user?.birthDateAsString
+                        ?: "")
                 ),
             )
-            Spacer(modifier = Modifier.size(28.dp))
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.margin_medium)))
             AddInformationSection(
-                title = "Address",
+                title = stringResource(R.string.profile_address),
                 information = mapOf(
-                    "Country" to (user?.country ?: ""),
-                    "City" to (user?.city ?: ""),
-                    "Street name" to (user?.streetName ?: ""),
-                    "Street address" to (user?.streetAddress ?: ""),
-                    "Zip code" to (user?.zipCode ?: "")
+                    stringResource(R.string.profile_country) to (user?.country ?: ""),
+                    stringResource(R.string.profile_city) to (user?.city ?: ""),
+                    stringResource(R.string.profile_street_name) to (user?.streetName ?: ""),
+                    stringResource(R.string.profile_street_address) to (user?.streetAddress
+                        ?: ""),
+                    stringResource(R.string.profile_zip_code) to (user?.zipCode ?: "")
                 ),
             )
-            Spacer(modifier = Modifier.size(28.dp))
+            Spacer(modifier = Modifier.size(dimensionResource(R.dimen.margin_medium)))
             AddInformationSection(
-                title = "Subscription",
+                title = stringResource(R.string.profile_subscription),
                 information = mapOf(
-                    "Plan" to (user?.plan ?: ""),
-                    "Status" to (user?.status ?: ""),
-                    "Payment method" to (user?.paymentMethod ?: ""),
-                    "Term" to (user?.term ?: ""),
+                    stringResource(R.string.profile_plan) to (user?.plan ?: ""),
+                    stringResource(R.string.profile_status) to (user?.status ?: ""),
+                    stringResource(R.string.profile_payment_method) to (user?.paymentMethod
+                        ?: ""),
+                    stringResource(R.string.profile_term) to (user?.term ?: ""),
                 ),
             )
         }
@@ -174,17 +163,16 @@ fun AddInformationSection(title: String, information: Map<String, String>) {
             modifier = Modifier.fillMaxWidth(),
             style = MaterialTheme.typography.titleMedium
         )
-        Spacer(modifier = Modifier.size(8.dp))
+        Spacer(modifier = Modifier.size(dimensionResource(R.dimen.space_default)))
         Column(
             modifier = Modifier
-                .clip(shape = RoundedCornerShape(12.dp))
+                .clip(shape = RoundedCornerShape(dimensionResource(R.dimen.corner_info)))
                 .background(BackgroundInfo)
         ) {
             for (index in 0 until entries.count()) {
                 val item = entries.get(index = index)
                 InformationItem(label = item.key, value = item.value)
-                if (index < entries.lastIndex)
-                    Divider(color = Color.White, thickness = 0.5.dp)
+                if (index < entries.lastIndex) Divider(color = Color.White, thickness = 0.5.dp)
             }
         }
     }
@@ -193,14 +181,18 @@ fun AddInformationSection(title: String, information: Map<String, String>) {
 @Composable
 fun InformationItem(label: String, value: String) {
     Row(
-        modifier = Modifier.padding(horizontal = 14.dp, vertical = 14.dp),
+        modifier = Modifier.padding(
+            horizontal = dimensionResource(R.dimen.margin_default),
+            vertical = dimensionResource(R.dimen.margin_default)
+        ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = label,
             modifier = Modifier.weight(0.6f),
-            style = MaterialTheme.typography.labelMedium,
+            style = MaterialTheme.typography.labelMedium
         )
+        Spacer(modifier = Modifier.size(dimensionResource(R.dimen.space_small)))
         Text(
             text = value,
             modifier = Modifier.weight(0.4f),
