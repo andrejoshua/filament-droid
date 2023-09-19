@@ -1,17 +1,19 @@
 package com.andre.apps.filamentdroid.ui.first
 
 import android.view.SurfaceView
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -54,17 +56,19 @@ fun Models(onButtonClick: () -> Unit) {
             .padding(vertical = dimensionResource(R.dimen.margin_default)),
     ) {
         Box(
-            modifier = Modifier.weight(1.0f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1.0f),
             contentAlignment = Alignment.Center
         ) {
-            LazyRow(
-                contentPadding = PaddingValues(
-                    start = dimensionResource(R.dimen.margin_default),
-                    end = dimensionResource(R.dimen.margin_default)
-                ),
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState())
+                    .padding(horizontal = dimensionResource(R.dimen.margin_default)),
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.space_small))
             ) {
-                items(count = 4) { position ->
+                for (position in 0 until 4) {
                     ModelItem(
                         position = position,
                         isSelected = position == currentPosition,
@@ -74,6 +78,7 @@ fun Models(onButtonClick: () -> Unit) {
                 }
             }
         }
+        Spacer(modifier = Modifier.size(dimensionResource(R.dimen.margin_default)))
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
@@ -106,8 +111,8 @@ fun ModelItem(position: Int, isSelected: Boolean, onItemClick: () -> Unit) {
 
     Box(
         modifier = Modifier
-            .height(height = dimensionResource(R.dimen.box_height))
-            .aspectRatio(ratio = 542f / 622f),
+            .fillMaxHeight()
+            .width(width = dimensionResource(R.dimen.button_width)),
         contentAlignment = Alignment.Center
     ) {
         AndroidView(factory = { context ->
