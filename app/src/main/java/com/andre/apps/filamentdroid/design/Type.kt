@@ -37,14 +37,14 @@ val Typography = Typography(
     ),
     titleMedium = TextStyle(
         fontFamily = fontFamily,
-        fontWeight = FontWeight.W500,
+        fontWeight = FontWeight.W700,
         fontSize = 20.sp,
         lineHeight = 24.sp,
         color = Text
     ),
     labelMedium = TextStyle(
         fontFamily = fontFamily,
-        fontWeight = FontWeight.W500,
+        fontWeight = FontWeight.W700,
         fontSize = 16.sp,
         lineHeight = 20.sp,
         color = Text

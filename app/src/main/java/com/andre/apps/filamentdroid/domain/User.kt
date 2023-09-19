@@ -7,6 +7,7 @@ import java.util.Locale
 data class User(
     // Personal
     val username: String,
+    val avatarUrl: String,
     val email: String,
     val phoneNumber: String,
     private val birthDate: Date?,

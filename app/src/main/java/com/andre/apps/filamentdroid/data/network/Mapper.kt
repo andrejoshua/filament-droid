@@ -12,6 +12,7 @@ fun UserResponse.asUserDTO(): User {
     ).parse(dateOfBirth)
     return User(
         username = username,
+        avatarUrl = avatar,
         email = email,
         phoneNumber = phoneNumber,
         birthDate = birthDate,
