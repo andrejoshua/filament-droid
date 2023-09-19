@@ -1,6 +1,7 @@
 package com.andre.apps.filamentdroid.ui.first
 
-import androidx.compose.foundation.clickable
+import android.view.SurfaceView
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,14 +20,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.andre.apps.filamentdroid.R
 import com.andre.apps.filamentdroid.design.BackgroundSecondary
 import com.andre.apps.filamentdroid.design.buttonStyle
+import com.andre.apps.filamentdroid.renderer.Renderer3d
 
 @Composable
 fun FirstScreen(onButtonClick: () -> Unit) {
@@ -48,17 +53,25 @@ fun Models(onButtonClick: () -> Unit) {
             .fillMaxSize()
             .padding(vertical = dimensionResource(R.dimen.margin_default)),
     ) {
-        LazyRow(
+        Box(
             modifier = Modifier.weight(1.0f),
-            contentPadding = PaddingValues(
-                start = dimensionResource(R.dimen.margin_default),
-                end = dimensionResource(R.dimen.margin_default)
-            )
+            contentAlignment = Alignment.Center
         ) {
-            items(count = 4) { pos ->
-                ModelItem(isSelected = currentPosition == pos, onItemClick = {
-                    vm.selectItem(pos)
-                })
+            LazyRow(
+                contentPadding = PaddingValues(
+                    start = dimensionResource(R.dimen.margin_default),
+                    end = dimensionResource(R.dimen.margin_default)
+                ),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.space_small))
+            ) {
+                items(count = 4) { position ->
+                    ModelItem(
+                        position = position,
+                        isSelected = position == currentPosition,
+                        onItemClick = {
+                            vm.selectItem(position)
+                        })
+                }
             }
         }
         Box(
@@ -85,18 +98,31 @@ fun Models(onButtonClick: () -> Unit) {
 }
 
 @Composable
-fun ModelItem(isSelected: Boolean, onItemClick: () -> Unit) {
+fun ModelItem(position: Int, isSelected: Boolean, onItemClick: () -> Unit) {
+    val viewer = remember(key1 = position) {
+        Renderer3d()
+    }
+    val lifecycleOwner = LocalLifecycleOwner.current
+
     Box(
         modifier = Modifier
             .height(height = dimensionResource(R.dimen.box_height))
-            .aspectRatio(ratio = 542f / 622f)
-            .clickable {
-                onItemClick.invoke()
-            },
+            .aspectRatio(ratio = 542f / 622f),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "Model goes here"
-        )
+        AndroidView(factory = { context ->
+            SurfaceView(context).apply {
+                setOnClickListener {
+                    onItemClick.invoke()
+                }
+                viewer.onSurface(this, lifecycleOwner.lifecycle)
+            }
+        }, update = {
+            if (isSelected) {
+                viewer.turnOn()
+            } else {
+                viewer.turnOff()
+            }
+        })
     }
 }

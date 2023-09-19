@@ -40,9 +40,10 @@ There are few additional points i will explain given the picture:
     * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
     * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
     * [Jetpack Compose](https://developer.android.com/jetpack/compose?gclid=Cj0KCQjwxuCnBhDLARIsAB-cq1rSXW4qMIzEuH3E_kQTce6lxCOUCrRwU4sRZITZGqzlqXh0e1J2fhoaAg59EALw_wcB&gclsrc=aw.ds)
+    * [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation)
 * [Retrofit](https://square.github.io/retrofit/)
 * [JUnit + Mockito](https://developer.android.com/training/testing/unit-testing/local-unit-tests)
 
 ## Issues produced
 
-* No issue as of 18-09-2023
+* No issue as of 19-09-2023

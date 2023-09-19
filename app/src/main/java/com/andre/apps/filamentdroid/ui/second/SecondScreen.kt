@@ -1,5 +1,6 @@
 package com.andre.apps.filamentdroid.ui.second
 
+import android.view.SurfaceView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,19 +25,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.andre.apps.filamentdroid.R
 import com.andre.apps.filamentdroid.design.BackgroundInfo
 import com.andre.apps.filamentdroid.design.BackgroundSecondary
 import com.andre.apps.filamentdroid.domain.User
+import com.andre.apps.filamentdroid.renderer.Renderer3d
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -61,12 +66,20 @@ fun SecondScreen() {
 
 @Composable
 fun ModelView() {
+    val viewer: Renderer3d = remember { Renderer3d() }
+    val lifecycleOwner = LocalLifecycleOwner.current
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Model is here")
+        AndroidView(factory = { context ->
+            SurfaceView(context).apply {
+                viewer.onSurface(this, lifecycleOwner.lifecycle)
+                viewer.turnOn()
+            }
+        })
     }
 }
 

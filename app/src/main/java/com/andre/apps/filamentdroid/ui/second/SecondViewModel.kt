@@ -1,5 +1,7 @@
 package com.andre.apps.filamentdroid.ui.second
 
+import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +13,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SecondViewModel @Inject constructor(private val getUserUseCase: GetUserUseCase) :
+class SecondViewModel @Inject constructor(
+    private val application: Application,
+    private val getUserUseCase: GetUserUseCase
+) :
     ViewModel() {
 
     fun getUser(): LiveData<User> = _user
@@ -20,8 +25,16 @@ class SecondViewModel @Inject constructor(private val getUserUseCase: GetUserUse
 
     init {
         viewModelScope.launch {
-            val user = getUserUseCase.execute()
-            _user.postValue(user)
+            try {
+                val user = getUserUseCase.execute()
+                _user.postValue(user)
+            } catch (e: Exception) {
+                Toast.makeText(
+                    application.applicationContext,
+                    "Failed to show user",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

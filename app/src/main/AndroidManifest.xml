@@ -15,10 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilamentDroid"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.FilamentDroid">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FilamentDroid"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

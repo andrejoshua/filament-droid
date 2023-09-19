@@ -24,5 +24,6 @@
     <string name="profile_payment_method">Payment method</string>
     <string name="profile_term">Term</string>
 
+    <!-- Content description -->
     <string name="content_desc_avatar">User Avatar URL</string>
 </resources>

@@ -46,6 +46,8 @@ retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glide-compose" }
 filament-android = { group = "com.google.android.filament", name = "filament-android", version.ref = "filament" }
+filament-android-utils = { group = "com.google.android.filament", name = "filament-utils-android", version.ref = "filament" }
+filament-android-gltfio= { group = "com.google.android.filament", name = "gltfio-android", version.ref = "filament" }
 nav-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav" }
 
 [plugins]
