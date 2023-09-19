@@ -15,6 +15,7 @@ import com.google.android.filament.utils.ModelViewer
 import com.google.android.filament.utils.Utils
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.random.Random
 
 class Renderer3d {
 
@@ -56,6 +57,9 @@ class Renderer3d {
 
     fun turnOn() {
         if (_isLoaded) {
+            _modelViewer.animator?.animationCount?.let {
+                _currentAnimationIndex = Random.nextInt(it)
+            }
             loadIndirectLight()
             _isTurnOn = true
             _choreographer.removeFrameCallback(frameCallback)
@@ -100,6 +104,7 @@ class Renderer3d {
     private lateinit var _lifecycle: Lifecycle
     private var _isLoaded = false
     private var _isTurnOn = true
+    private var _currentAnimationIndex = 0
 
     private val am: AssetManager get() = _surfaceView.context.assets
 
@@ -110,7 +115,7 @@ class Renderer3d {
             _choreographer.postFrameCallback(this)
             _modelViewer.animator?.apply {
                 if (animationCount > 0 && _isTurnOn) {
-                    applyAnimation(0, seconds.toFloat())
+                    applyAnimation(_currentAnimationIndex, seconds.toFloat())
                 }
                 updateBoneMatrices()
             }
