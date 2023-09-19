@@ -1,4 +1,4 @@
-# AlphaVantage App
+# FilamentDroid application
 
 **FilamentDroid** is an Android application with Clean Architecture approach (or close to it).
 This application is should be in line with current technology standards.
@@ -11,11 +11,6 @@ The first page should have OK button, which directs the app to second page, cons
 single 3d model section and profile section
 
 ## Architecture
-
-# TODO: Image will be put in later
-
-Architecture should follow this graph
-[Module structure]()
 
 This architecture mostly follows the mix of [this](https://github.com/andrejoshua/alphavantageapp)
 and [this](https://github.com/andrejoshua/covid-apps). See those links for detailed explanation
@@ -43,7 +38,3 @@ There are few additional points i will explain given the picture:
     * [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation)
 * [Retrofit](https://square.github.io/retrofit/)
 * [JUnit + Mockito](https://developer.android.com/training/testing/unit-testing/local-unit-tests)
-
-## Issues produced
-
-* No issue as of 19-09-2023
