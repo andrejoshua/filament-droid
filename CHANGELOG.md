@@ -13,3 +13,4 @@ New app, including several functions:
 New app, including several updates:
 
 - Added more documentations and consistencies in the app
+- The app size might be slightly larger

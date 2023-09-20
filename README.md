@@ -39,3 +39,7 @@ There are few additional points i will explain given the picture:
     * [Jetpack Compose Navigation](https://developer.android.com/jetpack/compose/navigation)
 * [Retrofit](https://square.github.io/retrofit/)
 * [JUnit + Mockito](https://developer.android.com/training/testing/unit-testing/local-unit-tests)
+
+Issues found:
+* APK keeps crashing on signed builds, due to proguard issue on Filament-GLTFIO library
+* As for 20-09-2023, there is no proguard found that address the issue above, as the proguard should keep all gltfio-related files (classes, jni libs)
