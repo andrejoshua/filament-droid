@@ -18,6 +18,7 @@ about Clean Architecture.
 
 There are few additional points i will explain given the picture:
 
+* Installing **Java 17** is mandatory due to this project's dependencies
 * The architecture used is based on task, which requires additional navigation and API call
 * The API call is auto-generated using Retrofit, and GSON as an adapter to convert API response into
   Kotlin Class

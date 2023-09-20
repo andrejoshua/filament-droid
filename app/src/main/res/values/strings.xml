@@ -24,6 +24,9 @@
     <string name="profile_payment_method">Payment method</string>
     <string name="profile_term">Term</string>
 
+    <!-- Error -->
+    <string name="error_show_user">Failed to show user</string>
+
     <!-- Content description -->
     <string name="content_desc_avatar">User Avatar URL</string>
 </resources>

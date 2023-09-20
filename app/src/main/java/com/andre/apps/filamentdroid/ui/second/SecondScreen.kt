@@ -124,7 +124,7 @@ fun ProfileSubview(user: User?) {
                     model = user?.avatarUrl,
                     contentDescription = stringResource(R.string.content_desc_avatar),
                     modifier = Modifier
-                        .size(96.dp)
+                        .size(dimensionResource(R.dimen.image_size))
                         .clip(CircleShape),
                 )
             }

@@ -46,6 +46,8 @@ class Renderer3d {
         _isLoaded = true
     }
 
+    // Turn off function removes the existing light
+    // Making the models appear dark
     fun turnOff() {
         if (_isLoaded) {
             removeIndirectLight()
@@ -55,6 +57,8 @@ class Renderer3d {
         }
     }
 
+    // Turn on function reloads the indirect light
+    // Making the models' colors show
     fun turnOn() {
         if (_isLoaded) {
             _modelViewer.animator?.animationCount?.let {

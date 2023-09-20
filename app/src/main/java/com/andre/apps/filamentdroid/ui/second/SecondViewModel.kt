@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.andre.apps.filamentdroid.R
 import com.andre.apps.filamentdroid.domain.GetUserUseCase
 import com.andre.apps.filamentdroid.domain.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +32,7 @@ class SecondViewModel @Inject constructor(
             } catch (e: Exception) {
                 Toast.makeText(
                     application.applicationContext,
-                    "Failed to show user",
+                    application.getString(R.string.error_show_user),
                     Toast.LENGTH_SHORT
                 ).show()
             }
